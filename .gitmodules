@@ -1,0 +1,3 @@
+[submodule "halflife_sdk"]
+	path = halflife_sdk
+	url = https://github.com/FWGS/xash3d-fwgs.git

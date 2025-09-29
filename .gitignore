@@ -1,0 +1,11 @@
+# Visual Studio
+.vs
+
+# Visual Studio Code
+.vscode
+
+# Build Artifacts
+# VS
+out
+# Convention
+build

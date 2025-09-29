@@ -1,0 +1,7 @@
+X(hook_CL_CreateMove)
+X(hook_Host_ValidSave)
+X(hook_HUD_Frame)
+X(hook_HUD_Redraw)
+X(hook_HUD_Reset)
+X(hook_HUD_Shutdown)
+X(hook_HUD_VidInit)
