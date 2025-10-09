@@ -48,6 +48,8 @@
 ## Requests
 @alex_magnum:
 - [ ] Better verification: cvar change detection, command blacklist, script usage detection (should be priority if at least cvar detection is possible),
+	- Maybe use whatever check sv_cheat is using and restrict the banned commands? (No idea if it's possible)
+		- If possible add indication of cheating
 - [ ] System timer is already there, which helps verification but is it possible to somehow add LRT similar to bxt? Would be awesome (but also would probably need to update autosplit  ).,
 - [ ] BXT already has some cof cvars, I'm pretty sure it should be easy to implement some of them. It already has
 	- [x] infinite stamina
@@ -60,6 +62,8 @@
 @guru:
 - [ ] Save indication text
 	- @guru the game already has a "Saved..." subtitle line for when you use a cassette recorder, maybe that could come in handy
+- [ ] +left +right
+- [ ] noclip
 
 @joah230:
 - [ ] Crosshair
@@ -70,7 +74,8 @@
 	- [x] Dot
 	- [x] T
 	- [x] Dynamic
-	- This is already done but for some reason calling any function from glad freeze the thread it was called on, and I don't want to use immediate mode
+	- This is already done but for some reason changing the VBO and setting it back to the original one freeze the thread it was called on, and I don't want to use immediate mode gl
+		- Try hooking to gl directly (swapbuffers etc.)
 
 # Plans for later
 - [ ] Documentation (Doxygen? Wiki?)

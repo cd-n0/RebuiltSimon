@@ -1,5 +1,5 @@
 #include "RebuiltSimon/globals.h"
-#include "RebuiltSimon/Features/hud.h"
+#include "RebuiltSimon/Features/Visual/hud.h"
 
 typedef __int32(__cdecl* HUD_Redraw_t)(float time, int intermission);
 static HUD_Redraw_t HUD_Redraw_o;

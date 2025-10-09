@@ -1,5 +1,5 @@
 #include "RebuiltSimon/globals.h"
-#include "RebuiltSimon/Features/info.h"
+#include "RebuiltSimon/Features/Visual/info.h"
 
 typedef __int32(__cdecl* HUD_Frame_t)(double time);
 static HUD_Frame_t HUD_Frame_o;

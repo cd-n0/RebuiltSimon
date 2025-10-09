@@ -2,7 +2,7 @@
 #include "globals.h"
 #include "cvars.h"
 #include "Hooks/hooks.h"
-#include "Features/hud.h"
+#include "Features/Visual/hud.h"
 #include "RebuiltSimon/SDK/Helpers/SpriteUtils/sprite_utils.h"
 
 bool initialize_rebuilt_simon(void) {
