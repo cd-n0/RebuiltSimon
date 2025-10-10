@@ -54,7 +54,7 @@ set(COMMON_SOURCES
 	"Features/Movement/autohop.h"
 	"Features/Movement/ducktap.c"
 	"Features/Movement/ducktap.h"
-)
+ "Features/Movement/yaw.c" "Features/Movement/yaw.h")
 
 set(COMMON_INCLUDES
 	"${CMAKE_SOURCE_DIR}"

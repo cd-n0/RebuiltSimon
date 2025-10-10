@@ -3,6 +3,8 @@
 #include <stdlib.h>
 
 kbutton_t in_ducktap;
+kbutton_t in_left;
+kbutton_t in_right;
 
 /* https://github.com/ValveSoftware/halflife/blob/b1b5cf5892918535619b2937bb927e46cb097ba1/cl_dll/input.cpp#L327 */
 /*
@@ -81,3 +83,7 @@ void KeyUp(kbutton_t* b)
 
 void IN_ducktapUp(void)   { KeyUp(&in_ducktap); }
 void IN_ducktapDown(void) { KeyDown(&in_ducktap); }
+void IN_leftUp(void) { KeyUp(&in_left); }
+void IN_leftDown(void) { KeyDown(&in_left); }
+void IN_rightUp(void) { KeyUp(&in_right); }
+void IN_rightDown(void) { KeyDown(&in_right); }

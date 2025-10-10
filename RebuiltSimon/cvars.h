@@ -69,6 +69,7 @@ OPERATION(disable_duck_time, 0);                  /* Disable duck time (enable d
 OPERATION(autojump, 0);                           /* Enable autojump */                                                     \
 OPERATION(ducktap_priority, 1);                   /* Prioritize ducktap over autojump */                                    \
                                                                                                                             \
+OPERATION(yawspeed, 10);                            /* Prioritize ducktap over autojump */                                    \
 //OPERATION(crosshair, 0);                          /* Enable crosshair */                                                    \
 //OPERATION(crosshair_dynamic, 0);                  /* Change crosshair gap based on velocity */                              \
 //OPERATION(crosshair_dot, 0);                      /* Enable crosshair dot */                                                \
