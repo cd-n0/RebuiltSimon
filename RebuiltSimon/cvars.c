@@ -50,6 +50,7 @@ void cvars_initialize(void) {
 	fprintf(stdout, "Noclip cmd address: %p\n", noclip);
 	Cmd_AddCommandWithFlags("noclip",  noclip,   FCVAR_RS | FCVAR_CHEAT); /* Can't put a prefix because it get's passed to the server */
 
+	/* Doesn't work, looks like the problem we had with noclip? */
 	xcommand_t god = OFFSET(g_hw_base, 0X8123B);
 	Cmd_AddCommandWithFlags("god",  god,   FCVAR_RS | FCVAR_CHEAT);
 
