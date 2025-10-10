@@ -39,7 +39,13 @@
 	- [x] Reduce repetitive code like fetching and setting color/position etc.
 - [x] Do fixes planned for 1.0.2
 
+1.1.2
+- [x] +left +right
+- [x] noclip
+- [x] notarget
+
 # Plans for the next releases
+- [ ] Fix godmode
 - [ ] Proper logger
 - [ ] Make a better signature scanner
 - [ ] Beutify the "ugly" parts
@@ -62,8 +68,8 @@
 @guru:
 - [ ] Save indication text
 	- @guru the game already has a "Saved..." subtitle line for when you use a cassette recorder, maybe that could come in handy
-- [ ] +left +right
-- [ ] noclip
+- [x] +left +right
+- [x] noclip
 
 @joah230:
 - [ ] Crosshair
