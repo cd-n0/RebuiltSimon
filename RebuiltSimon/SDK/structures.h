@@ -3,13 +3,13 @@
 
 #include <stdint.h>
 #include <stdbool.h>
-#include "pch.h"
+#include "RebuiltSimon/pch.h"
 
 #define CONCAT(A, B) A##B
 #define PADNAME(line) CONCAT(pad, line)
 #define PAD(amount) char PADNAME(__LINE__)[amount]
 
-#define OFFSET(base, offset) ((int)base + offset)
+#define OFFSET(base, offset) (void *)((uintptr_t)base + offset)
 
 typedef struct plugin_info_s
 {

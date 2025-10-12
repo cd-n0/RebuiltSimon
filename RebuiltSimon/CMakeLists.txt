@@ -91,6 +91,9 @@ target_link_libraries(RebuiltSimonCoFManager PRIVATE minhook ResParser)
 target_include_directories(RebuiltSimonCoFManager PUBLIC minhook ResParser)
 target_include_directories(RebuiltSimonCoFManager PUBLIC "${COMMON_INCLUDES}")
 
+set_property(TARGET RebuiltSimon PROPERTY C_STANDARD 99)
+set_property(TARGET RebuiltSimonCoFManager PROPERTY C_STANDARD 99)
+
 if (CMAKE_VERSION VERSION_GREATER 3.16)
 	target_precompile_headers(RebuiltSimon PRIVATE "pch.h")
 endif()

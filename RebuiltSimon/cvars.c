@@ -11,7 +11,7 @@ cvar_t** cvar_vars;
 
 #ifndef COF_MANAGER
 static void unload(void) {
-	CreateThread(0, 0, FreeLibrary, GetModuleHandleA("RebuiltSimon.dll"), 0, 0);
+	CreateThread(0, 0, (LPTHREAD_START_ROUTINE)FreeLibrary, GetModuleHandleA("RebuiltSimon.dll"), 0, 0);
 }
 #endif
 
@@ -41,7 +41,7 @@ void cvars_initialize(void) {
 	  hl.CBasePlayer::PlayerDeathThink+EFC - C7 80 08010000 03000000 - mov [eax+00000108],00000003
 	*/
 	/* Nop the entire check */
-	uintptr_t noclip_prevention = OFFSET(g_hl_base, 0xEB203);
+	void *noclip_prevention = OFFSET(g_hl_base, 0xEB203);
 	DWORD old_page_protection;
 	VirtualProtect(noclip_prevention, 19, PAGE_EXECUTE_READWRITE, &old_page_protection);
 	memset(noclip_prevention, 0x90, 19);

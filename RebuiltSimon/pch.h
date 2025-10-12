@@ -3,14 +3,15 @@
 
 #define WIN32_LEAN_AND_MEAN
 #define HSPRITE WINDOWS_HSPRITE
-#include <Windows.h>
+#include <windows.h>
 /* Windows HSPRITE clash with the Sprite handle typedef HSPRITE (int) in engine/cdll_int.h */
 #undef HSPRITE
 
 #include <stdio.h>
+#include <stdlib.h>
 #include <stdint.h>
 #include <stdbool.h>
-#include <minhook.h>
+#include <MinHook.h>
 #define CreateHook(pTarget, pDetour, ppOriginal) MH_CreateHook(pTarget, pDetour, (void**)ppOriginal)
 #include "memory/memory.h"
 
