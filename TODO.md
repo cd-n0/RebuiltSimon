@@ -49,6 +49,7 @@
 - [ ] Proper logger
 - [ ] Make a better signature scanner
 - [ ] Beutify the "ugly" parts
+- [ ] Remove the AI Slop (`ResParser`)
 	- Ex: 
 
 ## Requests
@@ -82,6 +83,9 @@
 	- [x] Dynamic
 	- This is already done but for some reason changing the VBO and setting it back to the original one freeze the thread it was called on, and I don't want to use immediate mode gl
 		- Try hooking to gl directly (swapbuffers etc.)
+
+@gatarxd:
+- [ ] Viewmodel offset
 
 # Plans for later
 - [ ] Documentation (Doxygen? Wiki?)
