@@ -95,7 +95,7 @@ void rebuilt_simon_info_frame(double time) {
         }
 #endif
         if (speed) {
-            vec3_t velocity;
+            vec3_t velocity = { 0 };
             memcpy(velocity, g_CoF.gclmove->velocity, (sizeof(float) * 2));
             DRAW_STATUS_TEXT("Speed:     %3.f", VectorLength(velocity));
         }
