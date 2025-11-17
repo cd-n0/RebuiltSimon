@@ -101,3 +101,20 @@ set_property(TARGET RebuiltSimonCoFManager PROPERTY C_STANDARD 99)
 if (CMAKE_VERSION VERSION_GREATER 3.16)
     target_precompile_headers(RebuiltSimon PRIVATE "pch.h")
 endif()
+
+# Only run on non-debug builds
+if(NOT CMAKE_BUILD_TYPE MATCHES DEBUG)
+    find_program(UPX_EXECUTABLE upx)
+    if(UPX_EXECUTABLE)
+        add_custom_command(TARGET RebuiltSimon POST_BUILD
+            COMMAND ${CMAKE_COMMAND} -E echo "Running UPX on RebuiltSimon"
+            COMMAND ${UPX_EXECUTABLE} --best --lzma $<TARGET_FILE:RebuiltSimon>
+        )
+        add_custom_command(TARGET RebuiltSimonCoFManager POST_BUILD
+            COMMAND ${CMAKE_COMMAND} -E echo "Running UPX on RebuiltSimonCoFManager"
+            COMMAND ${UPX_EXECUTABLE} --best --lzma $<TARGET_FILE:RebuiltSimonCoFManager>
+        )
+    else()
+        message(WARNING "UPX not found on PATH, skipping compression")
+    endif()
+endif()
