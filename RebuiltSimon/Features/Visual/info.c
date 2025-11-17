@@ -25,15 +25,6 @@ static void refresh_info_cvar_variables() {
     info_style.index = (int)CVAR_FLOAT_VALUE(info_offset);
     /* Text time to live */
     info_style.time_to_live = CVAR_FLOAT_VALUE(info_ttl);
-
-    /* Infinite stamina */
-    if (g_CoF.gsv_player) {
-        edict_t** dict = g_CoF.gsv_player;
-        if (dict) {
-            simon_t* simon = (simon_t*)(*dict)->pvPrivateData;
-            if (simon) { simon->infinite_stamina = CVAR_ON(disable_stamina) ? 1 : 0; }
-        }
-    };
 }
 
 void rebuilt_simon_info_frame(double time) {
