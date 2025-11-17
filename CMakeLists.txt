@@ -13,3 +13,4 @@ project("RebuiltSimon" LANGUAGES C)
 
 # Include sub-projects.
 add_subdirectory ("RebuiltSimon")
+add_subdirectory ("Injector")
