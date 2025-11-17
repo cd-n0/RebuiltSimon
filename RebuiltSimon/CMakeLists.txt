@@ -102,6 +102,12 @@ if (CMAKE_VERSION VERSION_GREATER 3.16)
     target_precompile_headers(RebuiltSimon PRIVATE "pch.h")
 endif()
 
+if (MSVC)
+    # To mix unnamed enums without warnings
+	target_compile_options(RebuiltSimon PRIVATE -wd5287)
+	target_compile_options(RebuiltSimonCoFManager PRIVATE -wd5287)
+endif()
+
 # Only run on non-debug builds
 if(NOT CMAKE_BUILD_TYPE MATCHES DEBUG)
     find_program(UPX_EXECUTABLE upx)
