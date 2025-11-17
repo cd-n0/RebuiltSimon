@@ -51,40 +51,12 @@ void rebuilt_simon_info_frame(double time) {
         bool stats_visible = (hp || stamina || speed);
         if (stats_visible) DRAW_STATUS_TEXT(".::  Simon Info  ::.");
 
-#if 0
-        //g_CoF.pEngine->Con_Printf("%p\n", g_CoF.pEngine->GetEntityByIndex(1));
-        //g_CoF.pEngine->Con_Printf("1:%p 2:%p 3:%p 4:%p\n", get_player(1), get_player(2), get_player(3), get_player(4));
-        /* ts so ass brah */
-        /* This will only work for the host */
-        simon_t* simon = get_player();
-        if (simon) {
-            if (simon->player_index == 1) {
-                if (hp) {
-                    DRAW_STATUS_TEXT("Health:    %3d", simon->hp_view);
-                    last_hp = simon->hp_view;
-                }
-                if (stamina) {
-                    DRAW_STATUS_TEXT("Stamina:   %3.f", simon->stamina);
-                    last_stamina = simon->stamina;
-                }
-            }
-            else {
-                if (hp) {
-                    DRAW_STATUS_TEXT("Health:    %3d", last_hp);
-                }
-                if (stamina) {
-                    DRAW_STATUS_TEXT("Stamina:   %3.f", last_stamina);
-                }
-            }
-        }
-#else
         if (hp) {
             DRAW_STATUS_TEXT("Health:    %d", get_health());
         }
         if (stamina) {
             DRAW_STATUS_TEXT("Stamina:   %d", get_stamina());
         }
-#endif
         if (speed) {
             vec3_t velocity = { 0 };
             memcpy(velocity, g_CoF.gclmove->velocity, (sizeof(float) * 2));

@@ -62,35 +62,6 @@ void rebuilt_simon_hud_frame(double time) {
         memcpy(previous_velocity, g_CoF.gclmove->velocity, sizeof(float) * 3);
     }
 
-#if 0
-    /* TODO: Find a better way */
-    simon_t* simon = get_player();
-    if (simon) {
-        if (simon->player_index == 1) {
-            if (CVAR_ON(hud_health)) {
-                draw_number(simon->hp_view, hud_style.health_position[0], hud_style.health_position[1],
-                    hud_style.color[0], hud_style.color[1], hud_style.color[2]);
-            }
-
-            if (CVAR_ON(hud_stamina)) {
-                draw_number(simon->stamina, hud_style.stamina_position[0], hud_style.stamina_position[1],
-                    hud_style.color[0], hud_style.color[1], hud_style.color[2]);
-            }
-        }
-        else {
-            /* last_hp and last_stamina set at info */
-            if (CVAR_ON(hud_health)) {
-                draw_number(last_hp, hud_style.health_position[0], hud_style.health_position[1],
-                    hud_style.color[0], hud_style.color[1], hud_style.color[2]);
-            }
-
-            if (CVAR_ON(hud_stamina)) {
-                draw_number(last_stamina, hud_style.stamina_position[0], hud_style.stamina_position[1],
-                    hud_style.color[0], hud_style.color[1], hud_style.color[2]);
-            }
-        }
-    }
-#else
      /* last_hp and last_stamina set at info */
      if (CVAR_ON(hud_health)) {
          draw_number(get_health(), hud_style.health_position[0], hud_style.health_position[1],
@@ -101,5 +72,4 @@ void rebuilt_simon_hud_frame(double time) {
          draw_number(get_stamina(), hud_style.stamina_position[0], hud_style.stamina_position[1],
              hud_style.color[0], hud_style.color[1], hud_style.color[2]);
      }
-#endif
 }

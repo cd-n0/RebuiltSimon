@@ -1,14 +1,6 @@
 #include "RebuiltSimon/globals.h"
 #include "hooks.h"
 
-//static const char* PM_JUMP_PATTERN = "55 8B EC 83 E4 ? 8B 0D";
-
-/* This function seems to only work at the engine initialization and looks hunk alloced, write a way to add commands yourself */
-/* static const char* CMD_ADD_COMMAND_PATTERN = "55 8B EC 83 EC ? 83 3D ? ? ? ? ? 74 ? 68 ? ? ? ? E8 ? ? ? ? 83 C4 ? 8B 45"; */
-
-//typedef void(__cdecl* pm_jump_func_t)(void);
-//static pm_jump_func_t pm_jump_o;
-
 bool initialize_hooks(void) {
     MH_Initialize();
 
