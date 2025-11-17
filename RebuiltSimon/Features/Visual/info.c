@@ -42,7 +42,7 @@ void rebuilt_simon_info_frame(double time) {
     DWORD milliseconds = msTotal % 1000;
 
     DRAW_STATUS_TEXT("RebuiltSimon");
-    DRAW_STATUS_TEXT("Build: %d%d%d", info.nBuild, info.nVerMajor, info.nVerMinor);
+    DRAW_STATUS_TEXT("Version: %d.%d.%d", info.nBuild, info.nVerMajor, info.nVerMinor);
     ++info_style.index;
 
 
