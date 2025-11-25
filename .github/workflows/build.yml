@@ -19,7 +19,7 @@ jobs:
         build_type: [Release, Debug]
         include:
           - os: windows-latest
-            toolchain_file: ""
+            toolchain_file: "./cmake/toolchain-msvc-win32.cmake"
           - os: ubuntu-latest
             toolchain_file: "./cmake/toolchain-mingw32.cmake"
 
