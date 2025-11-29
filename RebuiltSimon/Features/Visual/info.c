@@ -11,10 +11,13 @@ g_CoF.pEngine->Con_NXPrintf(&info_style, __VA_ARGS__); \
 int last_frame_info_line_count;
 static con_nprint_t info_style = { 0 };
 
+uint8_t info_background_color[4];
+
 /* Find a better way to set these values when they change rather than at each frame */
 /* Still didn't found a way to do this better */
 static void refresh_info_cvar_variables() {
     /* Set info color */
+    parse_rgba_u8(CVAR_STRING_VALUE(info_background_color), info_background_color, CVAR_DEFAULT_STR_info_background_color);
     uint8_t color[3];
     parse_rgb_u8(CVAR_STRING_VALUE(info_color), color, CVAR_DEFAULT_STR_info_color);
     info_style.color[0] = (float)color[0]/255;
@@ -27,7 +30,18 @@ static void refresh_info_cvar_variables() {
     info_style.time_to_live = CVAR_FLOAT_VALUE(info_ttl);
 }
 
-void rebuilt_simon_info_frame(double time) {
+void rebuilt_simon_info_HUD_Redraw(double time) {
+    if (CVAR_OFF(info)) return;
+    if (!in_game()) return;
+    if (CVAR_ON(info_background)) {
+        int info_offset = (int)CVAR_FLOAT_VALUE(info_offset);
+        int info_background_y = NPRINTF_Y_MARGIN + NPRINTF_FONT_HEIGHT * info_offset - INFO_BACKGROUND_Y_MARGIN;
+        int info_background_height = last_frame_info_line_count * NPRINTF_FONT_HEIGHT + INFO_BACKGROUND_Y_MARGIN * 2;
+        int info_background_x = screen_info.iWidth - INFO_BACKGROUND_WIDTH;
+        g_CoF.pEngine->pfnFillRGBABlend(info_background_x, info_background_y, INFO_BACKGROUND_WIDTH, info_background_height, info_background_color[0], info_background_color[1], info_background_color[2], info_background_color[3]);
+    }
+}
+void rebuilt_simon_info_HUD_Frame(double time) {
     /* Draw info */
     if (CVAR_OFF(info)) return;
     if (!in_game()) return;

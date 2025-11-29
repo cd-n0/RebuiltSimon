@@ -9,3 +9,7 @@
 out
 # Convention
 build
+
+# clangd
+.cache
+compile_commands.json

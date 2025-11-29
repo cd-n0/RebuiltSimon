@@ -3,10 +3,7 @@
 #include "RebuiltSimon/SDK/Helpers/SpriteUtils/sprite_utils.h"
 #include "RebuiltSimon/SDK/Helpers/Entities/player.h"
 #include "RebuiltSimon/SDK/Helpers/Parsers/parsers.h"
-#include "info.h"
 #include <stddef.h>
-
-uint8_t info_background_color[4];
 
 typedef struct hud_style_s {
     uint8_t color[3];
@@ -21,7 +18,6 @@ static hud_style_t hud_style;
 
 /* Find a better way to set these values when they change rather than at each frame */
 static void refresh_hud_cvar_variables() {
-    parse_rgba_u8(CVAR_STRING_VALUE(info_background_color), info_background_color, CVAR_DEFAULT_STR_info_background_color);
     parse_rgb_u8(CVAR_STRING_VALUE(hud_color), hud_style.color, CVAR_DEFAULT_STR_hud_color);
     parse_normalized_pos(CVAR_STRING_VALUE(hud_speedometer_position), hud_style.speedometer_position, CVAR_DEFAULT_STR_hud_speedometer_position);
     parse_normalized_pos(CVAR_STRING_VALUE(hud_jumpspeed_position), hud_style.jumpspeed_position, CVAR_DEFAULT_STR_hud_jumpspeed_position);
@@ -30,15 +26,8 @@ static void refresh_hud_cvar_variables() {
 }
 
 
-void rebuilt_simon_hud_frame(double time) {
+void rebuilt_simon_hud_HUD_Redraw(double time) {
     if (!in_game()) return;
-    if (CVAR_ON(info_background) && CVAR_ON(info)) {
-        int info_offset = (int)CVAR_FLOAT_VALUE(info_offset);
-        int info_background_y = NPRINTF_Y_MARGIN + NPRINTF_FONT_HEIGHT * info_offset - INFO_BACKGROUND_Y_MARGIN;
-        int info_background_height = last_frame_info_line_count * NPRINTF_FONT_HEIGHT + INFO_BACKGROUND_Y_MARGIN * 2;
-        int info_background_x = screen_info.iWidth - INFO_BACKGROUND_WIDTH;
-        g_CoF.pEngine->pfnFillRGBABlend(info_background_x, info_background_y, INFO_BACKGROUND_WIDTH, info_background_height, info_background_color[0], info_background_color[1], info_background_color[2], info_background_color[3]);
-    }
 
     if (CVAR_OFF(hud)) return;
     refresh_hud_cvar_variables();

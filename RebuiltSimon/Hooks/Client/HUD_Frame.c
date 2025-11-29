@@ -7,7 +7,7 @@ static HUD_Frame_t HUD_Frame_o;
 
 static void HUD_Frame_h(double time) {
     HUD_Frame_o(time);
-    rebuilt_simon_info_frame(time);
+    rebuilt_simon_info_HUD_Frame(time);
     /* TODO: put disable stamina at the initialization stage */
     disable_stamina();
 }
