@@ -107,6 +107,9 @@ typedef struct cof_data_s
     server_static_t* pServerState;
 
     playermove_t* pmove;
+
+    POINT *m_accum;
+    HWND hwnd;
 } cof_data_t;
 
 #endif /* SDK_H_ */

@@ -3,6 +3,7 @@
 #include "RebuiltSimon/SDK/Helpers/SpriteUtils/sprite_utils.h"
 #include "RebuiltSimon/SDK/Helpers/Entities/player.h"
 #include "RebuiltSimon/SDK/Helpers/Parsers/parsers.h"
+#include "RebuiltSimon/SDK/Helpers/Math/vector_math.h"
 #include <stddef.h>
 
 typedef struct hud_style_s {
@@ -33,19 +34,17 @@ void rebuilt_simon_hud_HUD_Redraw(double time) {
     refresh_hud_cvar_variables();
 
     if (CVAR_ON(hud_speedometer)) {
-        vec3_t velocity = { 0 };
-        memcpy(velocity, g_CoF.gclmove->velocity, (sizeof(float) * 2));
-        draw_number((int)VectorLength(velocity), hud_style.speedometer_position[0], hud_style.speedometer_position[1],
+        draw_number(get_speed(), hud_style.speedometer_position[0], hud_style.speedometer_position[1],
             hud_style.color[0], hud_style.color[1], hud_style.color[2]);
     }
+
     if (CVAR_ON(hud_jumpspeed)) {
         static vec3_t previous_velocity = { 0 };
-        static int previous_speed_2d;
+        static int previous_speed;
         if ((g_CoF.gclmove->velocity[2] != 0.0f && previous_velocity[2] == 0.0f) || (g_CoF.gclmove->velocity[2] > 0.0f && previous_velocity[2] < 0.0f)) {
-            previous_velocity[2] = 0;
-            previous_speed_2d = (int)VectorLength(previous_velocity);
+            previous_speed = get_speed_vec3(previous_velocity);
         }
-        draw_number(previous_speed_2d, hud_style.jumpspeed_position[0], hud_style.jumpspeed_position[1],
+        draw_number(previous_speed, hud_style.jumpspeed_position[0], hud_style.jumpspeed_position[1],
             hud_style.color[0], hud_style.color[1], hud_style.color[2]);
 
         memcpy(previous_velocity, g_CoF.gclmove->velocity, sizeof(float) * 3);

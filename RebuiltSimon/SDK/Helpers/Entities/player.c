@@ -1,4 +1,6 @@
 #include "RebuiltSimon/globals.h"
+#include "RebuiltSimon/cvars.h"
+#include "RebuiltSimon/SDK/Helpers/Math/vector_math.h"
 
 bool in_game() {
     if (g_CoF.pClientState->state != ca_active) return false;
@@ -30,4 +32,23 @@ int get_health() {
         return *hp;
     }
     else 0;
+}
+
+int get_speed() {
+    if (CVAR_ON(absolute_speed)) {
+        return vec3_len(g_CoF.gclmove->velocity);
+    }
+    else {
+        return vec2_len(g_CoF.gclmove->velocity);
+    }
+}
+
+
+int get_speed_vec3(vec3_t v) {
+    if (CVAR_ON(absolute_speed)) {
+        return vec3_len(v);
+    }
+    else {
+        return vec2_len(v);
+    }
 }

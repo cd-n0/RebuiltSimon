@@ -4,6 +4,7 @@
 #define WIN32_LEAN_AND_MEAN
 #define HSPRITE WINDOWS_HSPRITE
 #include <windows.h>
+#include <hidusage.h>
 /* Windows HSPRITE clash with the Sprite handle typedef HSPRITE (int) in engine/cdll_int.h */
 #undef HSPRITE
 
@@ -20,7 +21,7 @@
 #include "halflife_sdk/common/const.h"
 #include "halflife_sdk/common/cvardef.h"
 #include "halflife_sdk/common/kbutton.h"
-#include "halflife_sdk/public/xash3d_mathlib.h"
+//#include "halflife_sdk/public/xash3d_mathlib.h"
 #include "halflife_sdk/common/render_api.h"
 #include "halflife_sdk/common/netadr.h"
 #include "halflife_sdk/common/ref_params.h"

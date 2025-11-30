@@ -70,6 +70,8 @@ OPERATION(autojump, 0);                           /* Enable autojump */         
 OPERATION(ducktap_priority, 1);                   /* Prioritize ducktap over autojump */                                    \
                                                                                                                             \
 OPERATION(yawspeed, 210);                           /* +rs_left and +rs_right speed */                                      \
+OPERATION(rawinput, 1);                             /* rawinput */                                                          \
+OPERATION(absolute_speed, 0);                       /* 0 for horizontal speed */                                            \
 //OPERATION(crosshair, 0);                          /* Enable crosshair */                                                    \
 //OPERATION(crosshair_dynamic, 0);                  /* Change crosshair gap based on velocity */                              \
 //OPERATION(crosshair_dot, 0);                      /* Enable crosshair dot */                                                \

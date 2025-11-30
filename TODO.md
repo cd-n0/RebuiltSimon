@@ -44,7 +44,17 @@
 - [x] noclip
 - [x] notarget
 
+1.1.3
+- [x] Separate info logic from hud logic 
+- [x] Separate disabling stamina logic from info, that was left from testing
+
+1.2.0
+- [x] Rawinput
+- [x] Start your own math library (Thank you MSVC :DDDDD)
+
 # Plans for the next releases
+- [x] __thiscall macro for dealing with CXX stuff 
+- [ ] Setting an arbitrary version number is kinda stupid, go back to build numbers but properly this time?
 - [ ] Fix godmode
 - [ ] Proper logger
 - [ ] Make a better signature scanner
@@ -73,6 +83,7 @@
 - [x] noclip
 
 @joah230:
+- [x] Rawinput from MadSimonX
 - [ ] Crosshair
 	- [x] Color
 	- [x] Length

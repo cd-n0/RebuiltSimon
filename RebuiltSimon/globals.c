@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "SDK/structures.h"
 #include "globals.h"
+#include "SDK/GoldSrc/Wrappers/IGame.h"
 
 HMODULE g_hl_base;
 HMODULE g_hw_base;
@@ -17,8 +18,8 @@ plugin_info_t info = {
     .pszName = "Rebuilt Simon",
     .pszDescription = "Rewrite of MadSimon by kohtep",
     .pszContact = "Don't",
-    .nVerMajor = 1,
-    .nVerMinor = 3,
+    .nVerMajor = 2,
+    .nVerMinor = 0,
     .nBuild = 1
 };
 
@@ -26,11 +27,11 @@ bool initialize_common_globals(void) {
     g_hw_base = GetModuleHandleA("hw.dll");
     g_hl_base = GetModuleHandleA("hl.dll");
     if (!g_hl_base || !g_hw_base) return false;
-    //g_CoF.jump_dodge_stamina_reduction_amount = (float*)OFFSET(g_hl_base, 0x001CEB90);
-    //g_CoF.initial_sprint_stamina_reduction_amount = (float*)OFFSET(g_hl_base, 0x001A9724);
-    //g_CoF.sprint_stamina_reduction_amount = (float*)OFFSET(g_hl_base, 0x001A1380);
-    g_client_base = (HMODULE)OFFSET(g_hw_base, 0x1F02AC);
+    g_client_base = *(void**)(HMODULE)OFFSET(g_hw_base, 0x1F02AC);
     g_CoF.pmove = *(playermove_t **)OFFSET(g_hl_base, 0x220C50);
+    void* game = *(void**)OFFSET(g_hw_base, 0x1D08CC);
+    g_CoF.hwnd = GetMainWindow(game);
+    g_CoF.m_accum = OFFSET(g_client_base, 0x543580);
 
     return true;
 }

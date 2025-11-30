@@ -4,6 +4,7 @@
 #include "Hooks/hooks.h"
 #include "Features/Visual/hud.h"
 #include "RebuiltSimon/SDK/Helpers/SpriteUtils/sprite_utils.h"
+#include "RebuiltSimon/Features/QOL/rawinput.h"
 
 bool initialize_rebuilt_simon(void) {
     if (!initialize_common_globals()) {
@@ -37,6 +38,11 @@ bool initialize_rebuilt_simon(void) {
         return false;
     }
 
+    if (!initialize_rawinput()) {
+        MessageBoxA(0, "Failed initializing rawinput", "Error", 0);
+        return false;
+    }
+
     /* Reload archived values */
     g_CoF.pEngine->pfnClientCmd("exec config.cfg");
 
@@ -49,4 +55,5 @@ bool initialize_rebuilt_simon(void) {
 void deinitialize_rebuilt_simon(void) {
     deinitialize_hooks();
     cvars_deinitialize();
+    deinitialize_rawinput();
 }

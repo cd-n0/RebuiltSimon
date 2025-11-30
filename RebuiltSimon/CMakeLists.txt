@@ -58,7 +58,11 @@ set(COMMON_SOURCES
     "Features/Movement/yaw.h"
     "Features/Cheats/disable_stamina.c"
     "Features/Cheats/disable_stamina.h"
-)
+    "Features/QOL/rawinput.c"
+    "Features/QOL/rawinput.h"
+    "SDK/GoldSrc/Wrappers/IGame.h"
+    "SDK/GoldSrc/Wrappers/IGame.cpp"
+ "SDK/Helpers/Math/vector_math.h")
 
 set(COMMON_INCLUDES
     "${CMAKE_SOURCE_DIR}"

@@ -2,6 +2,7 @@
 #include "RebuiltSimon/globals.h"
 #include "RebuiltSimon/SDK/Helpers/Entities/player.h"
 #include "RebuiltSimon/SDK/Helpers/Parsers/parsers.h"
+#include "RebuiltSimon/SDK/Helpers/Math/vector_math.h"
 
 #define DRAW_STATUS_TEXT(...) do { \
 g_CoF.pEngine->Con_NXPrintf(&info_style, __VA_ARGS__); \
@@ -72,9 +73,7 @@ void rebuilt_simon_info_HUD_Frame(double time) {
             DRAW_STATUS_TEXT("Stamina:   %d", get_stamina());
         }
         if (speed) {
-            vec3_t velocity = { 0 };
-            memcpy(velocity, g_CoF.gclmove->velocity, (sizeof(float) * 2));
-            DRAW_STATUS_TEXT("Speed:     %3.f", VectorLength(velocity));
+            DRAW_STATUS_TEXT("Speed:     %d", get_speed());
         }
 
         if (stats_visible) ++info_style.index;

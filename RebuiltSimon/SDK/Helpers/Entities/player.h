@@ -3,10 +3,10 @@
 
 #include "RebuiltSimon/SDK/structures.h"
 
-simon_t* get_player();
 bool in_game();
-
 int get_health();
 int get_stamina();
+int get_speed();
+int get_speed_vec3(vec3_t v);
 
 #endif /* ENTITIES_H_ */
