@@ -1,5 +1,6 @@
 # RebuiltSimon
 Speedrun tool for Cry of Fear
+<img width="923" height="394" alt="f7HbBOD" src="https://github.com/user-attachments/assets/449fe4fd-794c-4765-9452-d44704daf9cc" />
 
 ## Building
 ```sh
