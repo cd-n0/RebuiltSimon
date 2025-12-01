@@ -3,6 +3,6 @@
 
 #include "RebuiltSimon/pch.h"
 
-void autohop(usercmd_t* cmd);
+void autojump(usercmd_t* cmd);
 
 #endif /* AUTOHOP_H_ */

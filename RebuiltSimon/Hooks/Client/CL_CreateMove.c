@@ -1,5 +1,5 @@
 #include "RebuiltSimon/globals.h"
-#include "RebuiltSimon/Features/Movement/autohop.h"
+#include "RebuiltSimon/Features/Movement/autojump.h"
 #include "RebuiltSimon/Features/Movement/ducktap.h"
 #include "RebuiltSimon/Features/Movement/yaw.h"
 
@@ -8,7 +8,7 @@ static CL_CreateMove_t CL_CreateMove_o;
 
 static void CL_CreateMove_h(float frametime, usercmd_t* cmd, int active) {
     CL_CreateMove_o(frametime, cmd, active);
-    autohop(cmd);
+    autojump(cmd);
     ducktap(cmd);
     yaw(cmd);
 }
