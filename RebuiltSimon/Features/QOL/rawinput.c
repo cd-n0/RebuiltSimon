@@ -28,6 +28,11 @@ void process_rawinput(UINT msg, WPARAM wParam, LPARAM lParam)
 	if (CVAR_OFF(rawinput))
 		return;
 
+	CURSORINFO ci = { sizeof(ci) };
+	if (!GetCursorInfo(&ci) || (ci.flags & CURSOR_SHOWING)) {
+		return;
+	}
+
 	BYTE buffer[sizeof(RAWINPUT)];
 	UINT size = sizeof(buffer);
 
