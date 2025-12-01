@@ -19,7 +19,7 @@ plugin_info_t info = {
     .pszDescription = "Rewrite of MadSimon by kohtep",
     .pszContact = "Don't",
     .nVerMajor = 2,
-    .nVerMinor = 0,
+    .nVerMinor = 1,
     .nBuild = 1
 };
 
