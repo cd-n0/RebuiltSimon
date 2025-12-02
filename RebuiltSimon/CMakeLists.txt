@@ -62,7 +62,8 @@ set(COMMON_SOURCES
     "Features/QOL/rawinput.h"
     "SDK/GoldSrc/Wrappers/IGame.h"
     "SDK/GoldSrc/Wrappers/IGame.cpp"
- "SDK/Helpers/Math/vector_math.h")
+    "SDK/Helpers/Math/vector_math.h"
+)
 
 set(COMMON_INCLUDES
     "${CMAKE_SOURCE_DIR}"
@@ -113,7 +114,7 @@ if (MSVC)
 endif()
 
 # Only run on non-debug builds
-if(NOT CMAKE_BUILD_TYPE MATCHES DEBUG)
+if(NOT CMAKE_BUILD_TYPE MATCHES Debug)
     find_program(UPX_EXECUTABLE upx)
     if(UPX_EXECUTABLE)
         add_custom_command(TARGET RebuiltSimon POST_BUILD
