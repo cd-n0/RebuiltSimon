@@ -89,13 +89,13 @@ set(COMMON_DEFINITIONS
 )
 
 add_library(RebuiltSimon SHARED "${COMMON_SOURCES}")
-target_compile_definitions(RebuiltSimon PUBLIC "CONSOLE=1" "${COMMON_DEFINITIONS}")
+target_compile_definitions(RebuiltSimon PUBLIC "TARGET_DLL_NAME=\"$<TARGET_FILE_BASE_NAME:RebuiltSimon>\"" "CONSOLE=1" "${COMMON_DEFINITIONS}")
 target_link_libraries(RebuiltSimon PRIVATE minhook ResParser)
 target_include_directories(RebuiltSimon PUBLIC minhook ResParser)
 target_include_directories(RebuiltSimon PUBLIC "${COMMON_INCLUDES}")
 
 add_library(RebuiltSimonCoFManager SHARED  "${COMMON_SOURCES}")
-target_compile_definitions(RebuiltSimonCoFManager PUBLIC "COF_MANAGER=1" "${COMMON_DEFINITIONS}")
+target_compile_definitions(RebuiltSimonCoFManager PUBLIC "TARGET_DLL_NAME=\"$<TARGET_FILE_BASE_NAME:RebuiltSimonCoFManager>\"" "COF_MANAGER=1" "${COMMON_DEFINITIONS}")
 target_link_libraries(RebuiltSimonCoFManager PRIVATE minhook ResParser)
 target_include_directories(RebuiltSimonCoFManager PUBLIC minhook ResParser)
 target_include_directories(RebuiltSimonCoFManager PUBLIC "${COMMON_INCLUDES}")

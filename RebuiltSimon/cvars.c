@@ -11,7 +11,7 @@ cvar_t** cvar_vars;
 
 #ifndef COF_MANAGER
 static void unload(void) {
-    CreateThread(0, 0, (LPTHREAD_START_ROUTINE)FreeLibrary, GetModuleHandleA("RebuiltSimon.dll"), 0, 0);
+    CreateThread(0, 0, (LPTHREAD_START_ROUTINE)FreeLibrary, GetModuleHandleA(TARGET_DLL_NAME".dll"), 0, 0);
 }
 #endif
 
