@@ -6,9 +6,21 @@
 #include "RebuiltSimon/SDK/Helpers/SpriteUtils/sprite_utils.h"
 #include "RebuiltSimon/Features/QOL/rawinput.h"
 
+#ifdef CONSOLE
+FILE* conout_err, * conout, * conin;
+#endif
+
 bool initialize_rebuilt_simon(void) {
+#ifdef CONSOLE
+    /* Maybe put opening and closing of the console as a COM as well */
+    if (AllocConsole()) {
+        conout = freopen("CONOUT$", "w", stdout);
+        conout_err = freopen("CONOUT$", "w", stderr);
+        conin = freopen("CONIN$", "r", stdin);
+    }
+#endif
     if (!initialize_common_globals()) {
-        MessageBoxA(0, "Failed initializing globals", "Error", 0);
+        MessageBoxA(0, "Failed initializing common globals", "Error", 0);
         return false;
     };
 #ifndef COF_MANAGER
@@ -32,11 +44,8 @@ bool initialize_rebuilt_simon(void) {
         return false;
     }
 
+    /* TODO: I really gotta stop postponing rewriting this AI garbage */
     engine_font = get_engine_font(screen_info.iHeight);
-    if (0 == engine_font.tall) {
-        MessageBoxA(0, "Failed getting the engine font height", "Error", 0);
-        return false;
-    }
 
     if (!initialize_rawinput()) {
         MessageBoxA(0, "Failed initializing rawinput", "Error", 0);
@@ -56,4 +65,12 @@ void deinitialize_rebuilt_simon(void) {
     deinitialize_hooks();
     cvars_deinitialize();
     deinitialize_rawinput();
+
+#ifdef CONSOLE
+    if (FreeConsole()) {
+        fclose(conout);
+        fclose(conout_err);
+        fclose(conin);
+    }
+#endif
 }

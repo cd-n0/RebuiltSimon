@@ -3,25 +3,13 @@
 #include "rebuilt_simon.h"
 #include "SDK/structures.h"
 
-#ifndef COF_MANAGER /* Injected version */
-
-
-#ifdef CONSOLE
-FILE* conout_err, * conout, * conin;
-#endif
-
 BOOL APIENTRY DllMain(HMODULE hModule, DWORD  ul_reason_for_call, LPVOID lpReserved)
 {
     switch (ul_reason_for_call) {
+
+#ifndef COF_MANAGER /* Attach behaviour is only needed on the injected version */
         case DLL_PROCESS_ATTACH: {
             DisableThreadLibraryCalls(hModule);
-            #ifdef CONSOLE
-            if (AllocConsole()) {
-                conout = freopen("CONOUT$", "w", stdout);
-                conout_err = freopen("CONOUT$", "w", stderr);
-                conin = freopen("CONIN$", "r", stdin);
-            }
-            #endif
 
             if (!initialize_rebuilt_simon()) {
                 MessageBoxA(0, "Failed at initialization", "Error", 0);
@@ -30,23 +18,15 @@ BOOL APIENTRY DllMain(HMODULE hModule, DWORD  ul_reason_for_call, LPVOID lpReser
 
             fprintf(stdout, "RebuiltSimon injected\n");
         } break;
+#endif /* !COF_MANAGER */
         case DLL_PROCESS_DETACH: {
             deinitialize_rebuilt_simon();
-
-            fprintf(stdout, "RebuiltSimon unloaded\n");
-
-            #ifdef CONSOLE
-            FreeConsole();
-            fclose(conout);
-            fclose(conout_err);
-            fclose(conin);
-            #endif
         } break;
     }
     return TRUE;
 }
 
-#else /* COF_MANAGER */
+#ifdef COF_MANAGER
 
 /* #define EXPORT __declspec(dllexport) */
 typedef struct cof_manager_data_s

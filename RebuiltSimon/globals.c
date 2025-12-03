@@ -19,13 +19,13 @@ plugin_info_t info = {
     .pszDescription = "Rewrite of MadSimon by kohtep",
     .pszContact = "Don't",
     .nVerMajor = 2,
-    .nVerMinor = 1,
+    .nVerMinor = 2,
     .nBuild = 1
 };
 
 bool initialize_common_globals(void) {
-    g_hw_base = GetModuleHandleA("hw.dll");
-    g_hl_base = GetModuleHandleA("hl.dll");
+    if (!(g_hw_base = GetModuleHandleA("hw.dll"))) { g_hw_base = LoadLibraryA("hw.dll"); }
+    if (!(g_hl_base = GetModuleHandleA("hl.dll"))) { g_hl_base = LoadLibraryA("hl.dll"); }
     if (!g_hl_base || !g_hw_base) return false;
     g_client_base = *(void**)(HMODULE)OFFSET(g_hw_base, 0x1F02AC);
     g_CoF.pmove = *(playermove_t **)OFFSET(g_hl_base, 0x220C50);
