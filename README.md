@@ -12,12 +12,12 @@ cmake --build build --config Release
 There are 2 versions of this tool you can use
 
 ### CoF Manager version
-1. Install [CoF_Manager](https://github.com/kohtep/CoF_Manager)
-2. Copy/Move `RebuiltSimonCoFManager.dll` to `cryoffear/addons`
+1. Install [CoF_Manager](https://github.com/cd-n0/CoF_Manager)
+2. Copy or move `RebuiltSimonCoFManager.dll` to `Cry of Fear\cryoffear\addons` (If there is no addons folder inside `cryoffear` create it yourself)
 
 ### Injected version (Used for development)
-Inject `RebuiltSimon.dll` to `cof.exe` with your favorite injector
-The injected version also opens up a console and has an extra command rs_unload that unloads the dll
+Inject `RebuiltSimon.dll` to `cof.exe` with `injector.exe`, or with your favorite DLL injector
+The injected version also opens up a console and has an extra command `rs_unload` that unloads the DLL
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to
