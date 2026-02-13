@@ -47,7 +47,6 @@ void cvars_initialize(void) {
     memset(noclip_prevention, 0x90, 19);
     VirtualProtect(noclip_prevention, 19, old_page_protection, &old_page_protection);
     xcommand_t noclip = OFFSET(g_hw_base, 0X813C8);
-    fprintf(stdout, "Noclip cmd address: %p\n", noclip);
     Cmd_AddCommandWithFlags("noclip",  noclip,   FCVAR_RS | FCVAR_CHEAT); /* Can't put a prefix because it get's passed to the server */
 
     /* Doesn't work, looks like the problem we had with noclip? */
@@ -60,14 +59,14 @@ void cvars_initialize(void) {
 }
 
 void cvars_deinitialize(void) {
-    g_CoF.pEngine->Con_Printf("Unregistering functions\n");
+    LOG_TRACE("Unregistering functions");
     /* Advance head until we find a command without the flag */
     for (;*cmd_functions && (((*cmd_functions)->flags & FCVAR_RS) != 0); *cmd_functions = (*cmd_functions)->next);
 
     for (cmd_function_t* current_cmd = *cmd_functions, *last_kept_cmd = *cmd_functions; current_cmd != NULL;) {
         cmd_function_t* next = current_cmd->next;  /* Current one will get freed or changed so we store the next at the start */
         if ((current_cmd->flags & FCVAR_RS) != 0) {
-            g_CoF.pEngine->Con_Printf("Command %s removed\n", current_cmd->name);
+            LOG_TRACE("Command %s removed", current_cmd->name);
             last_kept_cmd->next = current_cmd->next;
             free(current_cmd);
         }
@@ -83,19 +82,19 @@ void cvars_deinitialize(void) {
     /* It crashes if we can't free anyway so we don't need to check if we got the pattern or not */
     /*
     if (!Z_Free) {
-        g_CoF.pEngine->Con_Printf("Can't find Z_Free\n");
+        LOG_TRACE("Can't find Z_Free");
         return;
     }
     */
 
-    g_CoF.pEngine->Con_Printf("Unregistering cvars\n", cvar_vars);
+    LOG_TRACE("Unregistering cvars", cvar_vars);
     /* Advance head until we find a variable without the flag */
     for (;*cvar_vars && (((*cvar_vars)->flags & FCVAR_RS) != 0); *cvar_vars = (*cvar_vars)->next);
 
     for (cvar_t* current_cvar = *cvar_vars, *last_kept_cvar = *cvar_vars; current_cvar != NULL;) {
         cvar_t* next = current_cvar->next;  /* Current one will get freed or changed so we store the next at the start */
         if ((current_cvar->flags & FCVAR_RS) != 0) {
-            g_CoF.pEngine->Con_Printf("Cvar %s removed\n", current_cvar->name);
+            LOG_TRACE("Cvar %s removed", current_cvar->name);
             last_kept_cvar->next = current_cvar->next;
             Z_Free(current_cvar->string);
             Z_Free(current_cvar);

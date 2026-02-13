@@ -2,7 +2,7 @@
 #include "RebuiltSimon/globals.h"
 #include "RebuiltSimon/SDK/Helpers/SpriteUtils/sprite_utils.h"
 #include "RebuiltSimon/SDK/Helpers/Entities/player.h"
-#include "RebuiltSimon/SDK/Helpers/Parsers/parsers.h"
+#include "RebuiltSimon/SDK/Helpers/Parsers/cvar_parsers.h"
 #include "RebuiltSimon/SDK/Helpers/Math/vector_math.h"
 #include <stddef.h>
 

@@ -19,6 +19,6 @@ void hook_Host_ValidSave() {
         CreateHook(Host_ValidSave_o, Host_ValidSave_h, &Host_ValidSave_o);
     }
     else {
-        g_CoF.pEngine->Con_Printf("Failed to find save prevention signature cof_save_prevention cvar will not work\n");
+        LOG_WARN("Failed to find save prevention signature cof_save_prevention cvar will not work");
     }
 }

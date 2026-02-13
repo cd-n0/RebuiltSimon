@@ -22,15 +22,15 @@ bool initialize_hooks(void) {
     }
 
     if (MH_OK != MH_EnableHook(MH_ALL_HOOKS)) {
-        g_CoF.pEngine->Con_Printf("Failed hooking functions\n");
+        LOG_ERROR("Failed hooking functions");
         return false;
     }
-    wndproc_o = SetWindowLongPtrA(g_CoF.hwnd, GWLP_WNDPROC, wndproc_h);
+    wndproc_o = (WNDPROC)SetWindowLongPtrA(g_CoF.hwnd, GWLP_WNDPROC, (LONG)wndproc_h);
 
     return true;
 }
 
 void deinitialize_hooks(void) {
-    SetWindowLongPtrA(g_CoF.hwnd, GWLP_WNDPROC, wndproc_o);
+    SetWindowLongPtrA(g_CoF.hwnd, GWLP_WNDPROC, (LONG)wndproc_o);
     MH_Uninitialize();
 }

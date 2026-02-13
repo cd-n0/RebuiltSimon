@@ -1,8 +1,9 @@
 #include "RebuiltSimon/cvars.h"
 #include "RebuiltSimon/globals.h"
 #include "RebuiltSimon/SDK/Helpers/Entities/player.h"
-#include "RebuiltSimon/SDK/Helpers/Parsers/parsers.h"
+#include "RebuiltSimon/SDK/Helpers/Parsers/cvar_parsers.h"
 #include "RebuiltSimon/SDK/Helpers/Math/vector_math.h"
+#include <RebuiltSimon/SDK/Helpers/Parsers/engine_font.h>
 
 #define DRAW_STATUS_TEXT(...) do { \
 g_CoF.pEngine->Con_NXPrintf(&info_style, __VA_ARGS__); \
@@ -13,6 +14,11 @@ int last_frame_info_line_count;
 static con_nprint_t info_style = { 0 };
 
 uint8_t info_background_color[4];
+
+
+#define NPRINTF_Y_MARGIN 25
+#define INFO_BACKGROUND_Y_MARGIN ENGINE_FONT_HEIGHT
+#define INFO_BACKGROUND_WIDTH 9 * ENGINE_FONT_HEIGHT
 
 /* Find a better way to set these values when they change rather than at each frame */
 /* Still didn't found a way to do this better */
@@ -36,8 +42,8 @@ void rebuilt_simon_info_HUD_Redraw(double time) {
     if (!in_game()) return;
     if (CVAR_ON(info_background)) {
         int info_offset = (int)CVAR_FLOAT_VALUE(info_offset);
-        int info_background_y = NPRINTF_Y_MARGIN + NPRINTF_FONT_HEIGHT * info_offset - INFO_BACKGROUND_Y_MARGIN;
-        int info_background_height = last_frame_info_line_count * NPRINTF_FONT_HEIGHT + INFO_BACKGROUND_Y_MARGIN * 2;
+        int info_background_y = NPRINTF_Y_MARGIN + ENGINE_FONT_HEIGHT * info_offset - INFO_BACKGROUND_Y_MARGIN;
+        int info_background_height = last_frame_info_line_count * ENGINE_FONT_HEIGHT + INFO_BACKGROUND_Y_MARGIN * 2;
         int info_background_x = screen_info.iWidth - INFO_BACKGROUND_WIDTH;
         g_CoF.pEngine->pfnFillRGBABlend(info_background_x, info_background_y, INFO_BACKGROUND_WIDTH, info_background_height, info_background_color[0], info_background_color[1], info_background_color[2], info_background_color[3]);
     }

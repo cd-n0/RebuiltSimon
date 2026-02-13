@@ -3,7 +3,8 @@
 
 #include "pch.h"
 #include "SDK/structures.h"
-#include <libresparser.h>
+#include "SDK/Helpers/Parsers/res_parser.h"
+#include "SDK/Logger/logger.h"
 
 extern HMODULE g_hl_base;
 extern HMODULE g_hw_base;
@@ -12,7 +13,6 @@ extern cof_data_t g_CoF;
 extern plugin_info_t info;
 extern SCREENINFO screen_info;
 extern cl_entity_t* localplayer;
-extern engine_font_t engine_font;
 
 extern float last_stamina;
 extern int32_t last_hp;

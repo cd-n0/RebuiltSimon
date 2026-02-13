@@ -15,8 +15,6 @@ BOOL APIENTRY DllMain(HMODULE hModule, DWORD  ul_reason_for_call, LPVOID lpReser
                 MessageBoxA(0, "Failed at initialization", "Error", 0);
                 return false;
             }
-
-            fprintf(stdout, "RebuiltSimon injected\n");
         } break;
 #endif /* !COF_MANAGER */
         case DLL_PROCESS_DETACH: {

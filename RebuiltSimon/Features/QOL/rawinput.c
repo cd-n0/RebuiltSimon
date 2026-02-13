@@ -37,7 +37,7 @@ void process_rawinput(UINT msg, WPARAM wParam, LPARAM lParam)
 	UINT size = sizeof(buffer);
 
 	const UINT received = GetRawInputData(
-		lParam,
+		(HRAWINPUT)lParam,
 		RID_INPUT,
 		buffer,
 		&size,
@@ -46,7 +46,7 @@ void process_rawinput(UINT msg, WPARAM wParam, LPARAM lParam)
 	if (received == -1 || received > sizeof(buffer))
 		return;
 
-	const RAWINPUT* raw = buffer;
+	const RAWINPUT* raw = (RAWINPUT*)buffer;
 
 	if (raw->header.dwType != RIM_TYPEMOUSE)
 		return;

@@ -9,7 +9,6 @@ HMODULE g_client_base;
 cof_data_t g_CoF;
 SCREENINFO screen_info;
 cl_entity_t* localplayer;
-engine_font_t engine_font;
 
 float last_stamina;
 int32_t last_hp;
@@ -19,7 +18,7 @@ plugin_info_t info = {
     .pszDescription = "Rewrite of MadSimon by kohtep",
     .pszContact = "Don't",
     .nVerMajor = 2,
-    .nVerMinor = 2,
+    .nVerMinor = 3,
     .nBuild = 1
 };
 

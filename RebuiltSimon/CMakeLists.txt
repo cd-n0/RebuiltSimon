@@ -1,5 +1,4 @@
-﻿add_subdirectory ("ResParser")
-include(FetchContent)
+﻿include(FetchContent)
 
 FetchContent_Declare(
   minhook
@@ -48,8 +47,20 @@ set(COMMON_SOURCES
     "SDK/Helpers/SpriteUtils/sprite_utils.h"
     "SDK/Helpers/Entities/player.h"
     "SDK/Helpers/Entities/player.c"
-    "SDK/Helpers/Parsers/parsers.h"
-    "SDK/Helpers/Parsers/parsers.c"
+    "SDK/Helpers/Parsers/cvar_parsers.h"
+    "SDK/Helpers/Parsers/cvar_parsers.c"
+    "SDK/Helpers/Parsers/res_parser.h"
+    "SDK/Helpers/Parsers/res_parser.c"
+    "SDK/GoldSrc/Wrappers/IGame.h"
+    "SDK/GoldSrc/Wrappers/IGame.cpp"
+    "SDK/Helpers/Math/vector_math.h"
+    "SDK/Clock/clock.c"
+    "SDK/Clock/clock.h"
+    "SDK/Logger/logger.c"
+    "SDK/Logger/logger.h"
+    "SDK/Logger/clog.h"
+    "SDK/Helpers/Parsers/engine_font.c"
+    "SDK/Helpers/Parsers/engine_font.h"
     "Features/Movement/autojump.c"
     "Features/Movement/autojump.h"
     "Features/Movement/ducktap.c"
@@ -60,9 +71,8 @@ set(COMMON_SOURCES
     "Features/Cheats/disable_stamina.h"
     "Features/QOL/rawinput.c"
     "Features/QOL/rawinput.h"
-    "SDK/GoldSrc/Wrappers/IGame.h"
-    "SDK/GoldSrc/Wrappers/IGame.cpp"
-    "SDK/Helpers/Math/vector_math.h"
+    "Allocators/arena.h"
+    "Allocators/arena.c"
 )
 
 set(COMMON_INCLUDES
@@ -86,22 +96,23 @@ set(COMMON_INCLUDES
 
 set(COMMON_DEFINITIONS
     "_CRT_SECURE_NO_WARNINGS"
+    "ARENA_TYPE_POINTER_LIST" # ARENA_TYPE_CONSTANT_SIZE || ARENA_TYPE_POINTER_LIST || ARENA_TYPE_OS_RESERVE_COMMIT
 )
 
 add_library(RebuiltSimon SHARED "${COMMON_SOURCES}")
 target_compile_definitions(RebuiltSimon PUBLIC "TARGET_DLL_NAME=\"$<TARGET_FILE_BASE_NAME:RebuiltSimon>\"" "CONSOLE=1" "${COMMON_DEFINITIONS}")
-target_link_libraries(RebuiltSimon PRIVATE minhook ResParser)
-target_include_directories(RebuiltSimon PUBLIC minhook ResParser)
+target_link_libraries(RebuiltSimon PRIVATE minhook winmm.lib)
+target_include_directories(RebuiltSimon PUBLIC minhook)
 target_include_directories(RebuiltSimon PUBLIC "${COMMON_INCLUDES}")
 
 add_library(RebuiltSimonCoFManager SHARED  "${COMMON_SOURCES}")
 target_compile_definitions(RebuiltSimonCoFManager PUBLIC "TARGET_DLL_NAME=\"$<TARGET_FILE_BASE_NAME:RebuiltSimonCoFManager>\"" "COF_MANAGER=1" "${COMMON_DEFINITIONS}")
-target_link_libraries(RebuiltSimonCoFManager PRIVATE minhook ResParser)
-target_include_directories(RebuiltSimonCoFManager PUBLIC minhook ResParser)
+target_link_libraries(RebuiltSimonCoFManager PRIVATE minhook winmm.lib)
+target_include_directories(RebuiltSimonCoFManager PUBLIC minhook)
 target_include_directories(RebuiltSimonCoFManager PUBLIC "${COMMON_INCLUDES}")
 
-set_property(TARGET RebuiltSimon PROPERTY C_STANDARD 99)
-set_property(TARGET RebuiltSimonCoFManager PROPERTY C_STANDARD 99)
+set_property(TARGET RebuiltSimon PROPERTY C_STANDARD 11)
+set_property(TARGET RebuiltSimonCoFManager PROPERTY C_STANDARD 11)
 
 if (CMAKE_VERSION VERSION_GREATER 3.16)
     target_precompile_headers(RebuiltSimon PRIVATE "pch.h")
@@ -109,8 +120,8 @@ endif()
 
 if (MSVC)
     # To mix unnamed enums without warnings
-	target_compile_options(RebuiltSimon PRIVATE -wd5287)
-	target_compile_options(RebuiltSimonCoFManager PRIVATE -wd5287)
+    target_compile_options(RebuiltSimon PRIVATE -wd5287)
+    target_compile_options(RebuiltSimonCoFManager PRIVATE -wd5287)
 endif()
 
 # Only run on non-debug builds

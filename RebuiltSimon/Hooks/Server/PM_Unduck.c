@@ -29,6 +29,6 @@ void hook_PM_Unduck() {
         CreateHook(PM_Unduck_o, PM_Unduck_h, &PM_Unduck_o);
     }
     else {
-        g_CoF.pEngine->Con_Printf("Failed to find unduck function signature hl_unduck cvar will not work\n");
+        LOG_WARN("Failed to find unduck function signature hl_unduck cvar will not work\n");
     }
 }

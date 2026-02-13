@@ -52,15 +52,27 @@
 - [x] Rawinput
 - [x] Start your own math library (Thank you MSVC :DDDDD)
 
+1.2.1
+- [x] Fixed an issue where camera moves when mouse is moved on menus when rawinput is open 
+
+1.2.2
+- [x] Fixed initialization and deinitialization logic
+	- [x] Fix erronous ifdefd `DLL_PROCESS_DETACH` in DLLmain for cof manager builds
+	- [x] Load modules if they aren't loaded already
+
+1.2.3  
+- [x] Proper logger
+- [x] Remove the AI Slop (`ResParser`)
+- [x] Arena allocator
+- [x] Refactoring for the new logger
+- [x] Separate engine font from res parser
+ 
 # Plans for the next releases
 - [x] __thiscall macro for dealing with CXX stuff 
 - [ ] Setting an arbitrary version number is kinda stupid, go back to build numbers but properly this time?
 - [ ] Fix godmode
-- [ ] Proper logger
 - [ ] Make a better signature scanner
 - [ ] Beutify the "ugly" parts
-- [ ] Remove the AI Slop (`ResParser`)
-	- Ex: 
 
 ## Requests
 @alex_magnum:

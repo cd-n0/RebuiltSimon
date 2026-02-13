@@ -18,6 +18,6 @@ void hook_PM_PreventMegaBunnyJumping() {
         CreateHook(PATTERN_PM_PreventMegaBunnyJumping_o, PATTERN_PM_PreventMegaBunnyJumping_h, &PATTERN_PM_PreventMegaBunnyJumping_o);
     }
     else {
-        g_CoF.pEngine->Con_Printf("Failed to find bhop prevention function signature bhop_cap cvar will not work\n");
+        LOG_WARN("Failed to find bhop prevention function signature bhop_cap cvar will not work");
     }
 }
