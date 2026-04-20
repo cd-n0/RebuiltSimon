@@ -66,6 +66,9 @@
 - [x] Arena allocator
 - [x] Refactoring for the new logger
 - [x] Separate engine font from res parser
+
+1.2.4
+- [x] Don't hook Host_ValidSave if BunnymodXT is present, to prevent BunnymodXT crashing the entire game if it can't find it
  
 # Plans for the next releases
 - [x] __thiscall macro for dealing with CXX stuff 

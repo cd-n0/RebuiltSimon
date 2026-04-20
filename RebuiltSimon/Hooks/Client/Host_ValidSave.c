@@ -14,6 +14,17 @@ static __int32 __cdecl Host_ValidSave_h(void) {
 };
 
 void hook_Host_ValidSave() {
+    if (GetModuleHandleA("BunnymodXT.dll")) {
+        LOG_INFO("BunnymodXT is present, skipping hooking Host_ValidSave to prevent crash caused by BunnymodXT");
+
+        /* Due to how BXT straight up crash the game if it can't find the Host_ValidSave signature
+           therefore not setting the is cof steam flag, and due to how function hooking and signature
+           scanning works these 2 mods are incompatible. */
+        LOG_WARN("RebuiltSimon and BXT is not compatible, some functionality may not work");
+
+        return;
+    }
+
     Host_ValidSave_o = (prevent_save_func_t)cdmem_find_signature("hw.dll", PATTERN_Host_ValidSave);
     if (Host_ValidSave_o) {
         CreateHook(Host_ValidSave_o, Host_ValidSave_h, &Host_ValidSave_o);
